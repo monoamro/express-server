@@ -12,6 +12,12 @@ const ordersController = {
       .query("SELECT * FROM orders WHERE id=$1;", [req.params.id])
       .then((data) => res.json(data.rows))
       .catch(e => res.sendStatus(500))
+    },
+    insertNewOrder: (req, res) => {
+      const { price, date, userid } = req.headers;
+      pool.query("INSERT INTO orders (price,date, user_id) VALUES ( $1, $2, $3);", [price, date, userid])
+      .then(date => res.status(200).send(data))
+      .catch(e => res.sendStatus(501))
     }
   };
   
