@@ -1,19 +1,19 @@
 const pool = require('../my-modules/pool')
 
-const usersController = {
+const ordersController = {
     getAll: (req, res) => {
       pool
-      .query("SELECT * FROM users;")
+      .query("SELECT * FROM orders;")
       .then((data) => res.json(data.rows))
       .catch(e => res.sendStatus(500))
     },
-    getUserById: (req, res) => {
+    getOrderById: (req, res) => {
       pool
-      .query("SELECT * FROM users WHERE id=$1;", [req.params.id])
+      .query("SELECT * FROM orders WHERE id=$1;", [req.params.id])
       .then((data) => res.json(data.rows))
       .catch(e => res.sendStatus(500))
     }
   };
   
-  module.exports = usersController;
+  module.exports = ordersController;
   
