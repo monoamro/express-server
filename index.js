@@ -1,20 +1,12 @@
-const { Console } = require('console');
 const express = require('express');
 const app = express();
-const PORT = 3000;
-const { Pool } = require('pg')
+require('dotenv').config()
 
-const { USER, HOST, DB, PASSWORD, DBPORT, PORT } = process.env;
+const usersRoutes = require('./routes/users')
 
-const pool = new Pool ({
-    user: USER,
-    host: HOST,
-    database: DB,
-    password: PASSWORD,
-    port: DBPORT
-})
+const { PORT } = process.env;
 
-app.get('/', (req, res) => {res.send("Hello America")})
+app.use('/users', usersRoutes)
 
 app.listen(PORT, () => {console.log(`You're connected to port ${PORT}`)})
 
