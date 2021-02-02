@@ -6,6 +6,13 @@ const usersController = {
       .query("SELECT * FROM users;")
       .then((data) => res.json(data.rows))
       .catch(e => res.sendStatus(500))
+    },
+    getUserById: (req, res) => {
+      console.log(req.params)
+      pool
+      .query("SELECT * FROM users WHERE id=$1;", [req.params.id])
+      .then((data) => res.json(data.rows))
+      .catch(e => res.sendStatus(500))
     }
   };
   
